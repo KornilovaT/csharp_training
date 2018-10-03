@@ -39,7 +39,7 @@ namespace WebAddressbookTests
         }
 
         [Test]
-        public void TheUntitledTestCaseTest()
+        public void GroupCreationTest()
         {
             OpenMainPage();
             LoginToTheAccount("admin","secret");
