@@ -12,17 +12,32 @@ namespace WebAddressbookTests
 
         [Test]
         public void GroupCreationTest()
-        {
-            OpenMainPage();
-            LoginToTheAccount(new AccountData("admin","secret"));
-            GoToGroupsPage();
-            NewGroupCreation();
+        {            
+                        
             GroupData group = new GroupData("Group name");
             group.Header = "Group header";
             group.Footer = "Group footer";
-            FillInGroupForm(group);
-            SubmitGroupCreation();
-            ReturnToHomepage();
+
+            app.Navigator.GoToGroupsPage();
+            app.Groups
+                .NewGroupCreation()
+                .FillInGroupForm(group)
+                .SubmitGroupCreation();
+            app.Navigator.ReturnToHomepage();
+        }
+        [Test]
+        public void EmptyGroupCreationTest()
+        {                       
+            GroupData group = new GroupData("");
+            group.Header = "";
+            group.Footer = "";
+
+            app.Navigator.GoToGroupsPage();
+            app.Groups
+                .NewGroupCreation()
+                .FillInGroupForm(group)
+                .SubmitGroupCreation();
+            app.Navigator.ReturnToHomepage();
         }
     }
 }

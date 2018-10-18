@@ -13,9 +13,6 @@ namespace WebAddressbookTests
         [Test]
         public void ContactCreationTest()
         {
-            OpenMainPage();
-            LoginToTheAccount(new AccountData("admin", "secret"));
-            AddNewContact();
             ContactForm contact = new ContactForm("Tatiana");
             contact.Midname = "Aleksandrovna";
             contact.Lname = "Kornilova";
@@ -23,11 +20,12 @@ namespace WebAddressbookTests
             contact.Bday = "29";
             contact.Bmonth = "March";
             contact.Byear = "1983";
-            contact.Groupname = "Group name";            
-            FillInContactForm(contact);
-            SubmitContactCreation();
-            ReturnToHomepage();
+            contact.Groupname = "Group name";
+            app.Groups
+                .AddNewContact()
+                .FillInContactForm(contact)
+                .SubmitContactCreation();
+            app.Navigator.ReturnToHomepage();
         }
-
     }
 }
